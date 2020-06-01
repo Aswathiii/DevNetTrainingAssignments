@@ -1,15 +1,18 @@
 import json
 
 def dev_par():
-    with open('data/db.json', 'r') as b:
+    with open('data/dnac_devices.json', 'r') as b:
         dev_data = json.load(b)
-        final_data = []
         for dnac_device in dev_data['response']:
-            t = {}
-            t['id'] = dnac_device['id']
-            t['family'] = dnac_device['family']
-            t['softwareType'] = dnac_device['softwareType']
-            t['type'] = dnac_device['type']
-            t['managementIpAddress'] = dnac_device['managementIpAddress']
-            final_data.append(t)
-        return final_data
+            print('Device ID :', dnac_device['id'])
+            print('Device Type :', dnac_device['type'])
+            print('Device Family :', dnac_device['family'])
+            print('Software Type :', dnac_device['softwareType'])
+            print('Management IP Address :', dnac_device['managementIpAddress'],'\n')
+
+
+if __name__ =='__main__':
+    # Iterating through all files in data directory:
+    print('\nDevice Details : ')
+    print('-------------------\n')
+    dev_par()
