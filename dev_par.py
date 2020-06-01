@@ -1,4 +1,5 @@
 import json
+from parser import json_parser
 
 def dev_par():
     with open('data/dnac_devices.json', 'r') as b:

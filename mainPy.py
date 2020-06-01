@@ -1,11 +1,10 @@
-# Import modules
-import sys
 import json
-import xml.etree.ElementTree as ET
-import yaml
 import os
-#import xmltodict
-import pprint
+
+from parser import json_parser
+from parser import xml_parser
+from parser import yaml_parser
+
 
 # Main function
 if __name__ == "__main__":
@@ -15,27 +14,16 @@ if __name__ == "__main__":
     data_acnt = {}
 
     #db.json
-    with open('data/db.json', 'r') as f:
-        data_json = json.loads(f.read())
-        data_acnt.update(data_json)
+    d1 = json_parser("data/db.json")
+    data_acnt.update(d1)
 
     # db.xml
-    with open("data/db.xml", 'r') as x:
-        tree = ET.parse(x) 
-        root = tree.getroot() 
-        acnt = {}
-        for k in root.iter():
-            if ('ACCT' in k.tag):
-                at = {}
-                for tr in k:
-                    at[tr.tag] = tr.text
-                acnt[k.tag] = at
-        data_acnt.update(acnt)
+    d2 = xml_parser("data/db.xml")
+    data_acnt.update(d2)
 
     #db.yml
-    with open("data/db.yml", 'r') as y:
-        data_yaml = yaml.load(y, Loader=yaml.FullLoader)
-        data_acnt.update(data_yaml)
+    d3 = yaml_parser("data/db.yml")
+    data_acnt.update(d3)
     
 if __name__ =='__main__':
     # Iterating through all files in data directory:
