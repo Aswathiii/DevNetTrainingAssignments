@@ -2,9 +2,8 @@ import json
 from parser import json_parser
 
 def dev_par(file_dev):
-    with open(file_dev, 'r') as b:
-        dev_data = json.load(b)
-        for dnac_device in dev_data['response']:
+    dev_data: dict = json_parser(file_dev)
+    for dnac_device in dev_data['response']:
             print('Device ID :', dnac_device['id'])
             print('Device Type :', dnac_device['type'])
             print('Device Family :', dnac_device['family'])
