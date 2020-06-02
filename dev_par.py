@@ -1,10 +1,11 @@
 import json
 from parser import json_parser
+from get_dnac import get_file
 
-def dev_par(file_dev):
-    dev_data: dict = json_parser(file_dev)
+def dev_par(u_name,p_word,site1,site2):
+    dev_data = get_file(u_name,p_word,site1,site2)
     for dnac_device in dev_data['response']:
-            print('Device ID :', dnac_device['id'])
+            print('\nDevice ID :', dnac_device['id'])
             print('Device Type :', dnac_device['type'])
             print('Device Family :', dnac_device['family'])
             print('Software Type :', dnac_device['softwareType'])
@@ -15,4 +16,10 @@ if __name__ =='__main__':
     # Iterating through all files in data directory:
     print('\nDevice Details : ')
     print('-------------------\n')
-    dev_par('data/dnac_devices.json')
+    site1 = 'https://sandboxdnac2.cisco.com/api/system/v1/auth/token'
+    site2 = 'https://sandboxdnac2.cisco.com/dna/intent/api/v1/network-device'
+    un: str = input("Enter username : ")
+    ps: str = input("Enter password : ")
+
+    dev_par(un,ps,site1,site2)
+

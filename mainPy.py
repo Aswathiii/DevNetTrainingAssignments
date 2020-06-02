@@ -25,7 +25,6 @@ if __name__ == "__main__":
     d3 = yaml_parser("data/db.yml")
     data_acnt.update(d3)
     
-if __name__ =='__main__':
     # Iterating through all files in data directory:
     print('\nAccount Details : ')
     print('-------------------\n')
