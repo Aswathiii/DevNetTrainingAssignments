@@ -1,8 +1,8 @@
 import json
 from parser import json_parser
 
-def dev_par():
-    with open('data/dnac_devices.json', 'r') as b:
+def dev_par(file_dev):
+    with open(file_dev, 'r') as b:
         dev_data = json.load(b)
         for dnac_device in dev_data['response']:
             print('Device ID :', dnac_device['id'])
@@ -16,4 +16,4 @@ if __name__ =='__main__':
     # Iterating through all files in data directory:
     print('\nDevice Details : ')
     print('-------------------\n')
-    dev_par()
+    dev_par('data/dnac_devices.json')
