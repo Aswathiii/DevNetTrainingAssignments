@@ -1,25 +1,21 @@
 import json
 from parser import json_parser
-from get_dnac import get_file
+from index import get_file
 
-def dev_par(u_name,p_word,site1,site2):
-    dev_data = get_file(u_name,p_word,site1,site2)
+def dev_par(site2):
+    dev_data = get_file(site2)
     for dnac_device in dev_data['response']:
-            print('\nDevice ID :', dnac_device['id'])
-            print('Device Type :', dnac_device['type'])
-            print('Device Family :', dnac_device['family'])
-            print('Software Type :', dnac_device['softwareType'])
-            print('Management IP Address :', dnac_device['managementIpAddress'],'\n')
+            print('<h2>\nDevice ID :</h2>', dnac_device['id'])
+            print('<h2>Device Type :</h2>', dnac_device['type'])
+            print('<h2>Device Family :</h2>', dnac_device['family'])
+            print('<h2>Software Type :</h2>', dnac_device['softwareType'])
+            print('<h2>Management IP Address :</h2>', dnac_device['managementIpAddress'],'\n')
 
 
 if __name__ =='__main__':
     # Iterating through all files in data directory:
-    print('\nDevice Details : ')
-    print('-------------------\n')
-    site1 = 'https://sandboxdnac2.cisco.com/api/system/v1/auth/token'
+    print('\<h1>nDevice Details : </h1>')
+    print('<h1>-------------------\n</h1>')
     site2 = 'https://sandboxdnac2.cisco.com/dna/intent/api/v1/network-device'
-    un: str = input("Enter username : ")
-    ps: str = input("Enter password : ")
 
-    dev_par(un,ps,site1,site2)
-
+    dev_par(site2)
